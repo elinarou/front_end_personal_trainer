@@ -54,8 +54,7 @@ export default function Addtraining(props) {
 
   return(
     <div>
-      <Button 
-        onClick={handleClickOpen}><EventNoteIcon /></Button>
+      <Button onClick={handleClickOpen}><EventNoteIcon /></Button>
       <Dialog 
         open={open} 
         onClose={handleClose}>

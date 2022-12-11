@@ -13,14 +13,14 @@ export default function Traininglist() {
   useEffect(() => fetchData(), []);
 
   const fetchData = () => {
-      fetch('https://customerrest.herokuapp.com/gettrainings')
+      fetch("https://customerrest.herokuapp.com/gettrainings")
       .then(response => response.json())
       .then(data => setTrainings(data))
   };
 
   const deleteTraining = (id) => {
-    if (window.confirm('Are you sure?')) {
-      fetch(`https://customerrest.herokuapp.com/api/trainings/${id}`, {method: 'DELETE'})
+    if (window.confirm("Are you sure?")) {
+      fetch(`https://customerrest.herokuapp.com/api/trainings/${id}`, {method: "DELETE"})
       .then(response => fetchData())
       .catch(err => console.error(err))
         
@@ -31,7 +31,7 @@ export default function Traininglist() {
 
   // Snackbar
   const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
+    if (reason === "clickaway") {
     return;
     }
     setOpen(false);
@@ -44,37 +44,37 @@ export default function Traininglist() {
 
   const columns = [
     {
-      headerName: 'Actions', 
+      headerName: "Actions", 
       width: 115, 
-      field: 'id',
+      field: "id",
       // Delete 
       cellRenderer: ({value}) => 
       <Button 
         onClick={() => deleteTraining(value)}><DeleteIcon /></Button>
     },
     {
-      headerName: 'Customer', 
-      field: 'fullname', 
+      headerName: "Customer", 
+      field: "fullname", 
       filter: true, 
       sortable: true,
       valueGetter: customerName
     },
     {
-      headerName: 'Date', 
-      field: 'date', 
+      headerName: "Date", 
+      field: "date", 
       filter: true, 
       sortable: true,
       cellRenderer: ({value}) => <ISOToDate date={value} />
     },
     {
-      headerName: 'Duration (min)', 
-      field: 'duration', 
+      headerName: "Duration (min)", 
+      field: "duration", 
       filter: true, 
       sortable: true
     },
     {
-      headerName: 'Activity', 
-      field: 'activity', 
+      headerName: "Activity", 
+      field: "activity", 
       filter: true, 
       sortable: true
     }  
@@ -82,16 +82,17 @@ export default function Traininglist() {
 
   return (
     <div>
-      <Typography variant='h6' sx={{ ml: 19, p: 1 }}>
+      <Typography variant="h6" sx={{ ml: 19, p: 1 }}>
         Trainings
       </Typography>
-      <Divider variant='middle' />
+      <Divider variant="middle" />
       <div 
-      className='ag-theme-material' 
+      className="ag-theme-material" 
       style={{
-      width: '80%', 
-      height: '700px',
-      margin: 'auto'}}>  
+        width: "80%", 
+        height: "700px",
+        margin: "auto"
+        }}>  
       <AgGridReact
       columnDefs={columns}
       rowData={trainings}
@@ -103,7 +104,7 @@ export default function Traininglist() {
         open={open}
         autoHideDuration={6000}
         onClose={handleClose}
-        message='Training deleted'
+        message="Training deleted"
       />
     </div>
   );

@@ -19,12 +19,12 @@ export default function SidePanel() {
     {
       text: "Customers",
       icon: <PersonIcon />,
-      onClick: () => navigate('/customers')
+      onClick: () => navigate("/customers")
     },
     {
       text: "Trainings",
       icon: <FitnessCenterIcon />,
-      onClick: () => navigate('/trainings')
+      onClick: () => navigate("/trainings")
     }
   ];
 

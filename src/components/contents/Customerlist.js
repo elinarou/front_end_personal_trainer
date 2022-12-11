@@ -16,14 +16,14 @@ export default function Customerlist() {
   useEffect(() => fetchData(), []);
 
   const fetchData = () => {
-    fetch('https://customerrest.herokuapp.com/api/customers')
+    fetch("https://customerrest.herokuapp.com/api/customers")
     .then(response => response.json())
     .then(data => setCustomers(data.content))
   };
 
   const deleteCustomer = (data) => {
-    if (window.confirm('Are you sure?')) {
-        fetch(data.links[0].href, {method: 'DELETE'})
+    if (window.confirm("Are you sure?")) {
+        fetch(data.links[0].href, {method: "DELETE"})
         .then(response => fetchData())
         .catch(err => console.error(err))
         
@@ -33,10 +33,10 @@ export default function Customerlist() {
   };
 
   const saveCustomer = (customer) => {
-    fetch('https://customerrest.herokuapp.com/api/customers', {
-      method: 'POST',
+    fetch("https://customerrest.herokuapp.com/api/customers", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json"
       },
       body: JSON.stringify(customer)
     })
@@ -46,9 +46,9 @@ export default function Customerlist() {
 
   const updateCustomer = (customer, link) => {
     fetch(link, {
-      method: 'PUT',
+      method: "PUT",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json"
       },
       body: JSON.stringify(customer)
     })
@@ -57,10 +57,10 @@ export default function Customerlist() {
   };
 
   const saveTraining = (training) => {
-    fetch('https://customerrest.herokuapp.com/api/trainings', {
-      method: 'POST',
+    fetch("https://customerrest.herokuapp.com/api/trainings", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json"
       },
       body: JSON.stringify(training)
     })
@@ -68,7 +68,7 @@ export default function Customerlist() {
 
   // Snackbar
   const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
+    if (reason === "clickaway") {
     return;
     }
     setOpen(false);
@@ -77,64 +77,64 @@ export default function Customerlist() {
   const columns = [
     {
       // Edit customer
-      headerName: 'Edit',
+      headerName: "Edit",
       width: 90,
       cellRenderer: row => 
       <Editcustomer updateCustomer={updateCustomer} customer={row.data}/>
     },
     {
       // Delete customer
-      headerName: 'Delete',
+      headerName: "Delete",
       width: 120,  
       cellRenderer: row => 
       <Button onClick={() => deleteCustomer(row.data)}><DeleteIcon /></Button>
     },
     {
       // Add training
-      headerName: 'Add training',
+      headerName: "Add training",
       width: 120,
       cellRenderer: row => 
       <Addtraining saveTraining={saveTraining} customer={row.data} />
     },
     {
-      headerName: 'First name', 
-      field: 'firstname',
+      headerName: "First name", 
+      field: "firstname",
       filter: true, 
       sortable: true
     },
     {
-      headerName: 'Last name', 
-      field: 'lastname', 
+      headerName: "Last name", 
+      field: "lastname", 
       filter: true, 
       sortable: true
     },
     {
-      headerName: 'Phone', 
-      field: 'phone', 
+      headerName: "Phone", 
+      field: "phone", 
       filter: true, 
       sortable: true
     },
     {
-      headerName: 'Email', 
-      field: 'email', 
+      headerName: "Email", 
+      field: "email", 
       filter: true, 
       sortable: true
     },
     {
-      headerName: 'Street address', 
-      field: 'streetaddress', 
+      headerName: "Street address", 
+      field: "streetaddress", 
       filter: true, 
       sortable: true
     },
     {
-      headerName: 'Post code', 
-      field: 'postcode', 
+      headerName: "Post code", 
+      field: "postcode", 
       filter: true, 
       sortable: true
     },
     {
-      headerName: 'City', 
-      field: 'city', 
+      headerName: "City", 
+      field: "city", 
       filter: true, 
       sortable: true
     }
@@ -152,9 +152,9 @@ export default function Customerlist() {
       <div
         className="ag-theme-material" 
         style={{
-        width: '80%', 
-        height: '700px',
-        margin: 'auto'}}>  
+        width: "80%", 
+        height: "700px",
+        margin: "auto"}}>  
         <AgGridReact
         columnDefs={columns}
         rowData={customers}
