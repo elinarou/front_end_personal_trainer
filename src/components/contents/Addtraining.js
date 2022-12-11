@@ -6,11 +6,14 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import DateToISO from '../functions/DateToISO';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 
 export default function Addtraining(props) {
   const [open, setOpen] = useState(false);
   const [isReady, setIsReady] = useState(false);
+  const [dateTime, setDateTime] = useState('');
   const [training, setTraining] = useState(
     {
       date: '', 
@@ -18,7 +21,8 @@ export default function Addtraining(props) {
       duration: '', 
       customer: String(props.customer.links[0].href) 
     });
-
+  
+  // Save new training
   useEffect(() => {
     if (isReady) {
       props.saveTraining(training);
@@ -38,8 +42,12 @@ export default function Addtraining(props) {
     setTraining({...training, [event.target.name]: event.target.value})
   };
 
+  const handleDateChange = (dateTime) => {
+    setDateTime(dateTime);
+  };
+
   const addTraining = () => { 
-    setTraining({...training, date: DateToISO(training.date)});
+    setTraining({...training, date: dateTime.$d});
     setIsReady(true);
     handleClose();
   };
@@ -53,17 +61,15 @@ export default function Addtraining(props) {
         onClose={handleClose}>
         <DialogTitle>New training</DialogTitle>
         <DialogContent>
-          <TextField
-            autoFocus
-            margin="dense"
-            name="date"
-            value={training.date}
-            onChange={e => handleInputChange(e)}
-            label="Date and time"
-            placeholder="DD.MM.YYYY hh:mm"
-            fullWidth
-            variant="standard"
-          />
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DateTimePicker
+              label="Date & Time"
+              inputFormat="DD/MM/YYYY"
+              value={dateTime}
+              onChange={handleDateChange}
+              renderInput={(params) => <TextField {...params} />}
+            />
+          </LocalizationProvider>
           <TextField
             margin="dense"
             name="activity"
