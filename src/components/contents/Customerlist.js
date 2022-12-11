@@ -142,11 +142,13 @@ export default function Customerlist() {
 
   return (
     <div>
-      <Typography variant="h6" sx={{ ml: 19, p: 1 }}>
-        Customers
-      </Typography>
+      <Typography 
+        variant="h6" 
+        sx={{ ml: 19, mb: 1, mt: 2 }}>
+          Customers 
+      </Typography>  
+      <Addcustomer saveCustomer={saveCustomer} />
       <Divider variant="middle" />
-      <Addcustomer saveCustomer={saveCustomer}/>
       <div
         className="ag-theme-material" 
         style={{
