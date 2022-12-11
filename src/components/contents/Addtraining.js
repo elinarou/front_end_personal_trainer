@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -9,6 +9,7 @@ import DateToISO from '../functions/DateToISO';
 
 export default function Addtraining(props) {
   const [open, setOpen] = useState(false);
+  const [isReady, setIsReady] = useState(false);
   const [training, setTraining] = useState(
     {
       date: '', 
@@ -16,6 +17,13 @@ export default function Addtraining(props) {
       duration: '', 
       customer: String(props.customer.links[0].href) 
     });
+
+  useEffect(() => {
+    if (isReady) {
+      props.saveTraining(training);
+      setIsReady(false);
+    };
+  }, [isReady]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -29,10 +37,9 @@ export default function Addtraining(props) {
     setTraining({...training, [event.target.name]: event.target.value})
   };
 
-  const addTraining = () => {
-    const dateISO = DateToISO(training.date); 
-    setTraining({...training, date: dateISO})
-    props.saveTraining(training);
+  const addTraining = () => { 
+    setTraining({...training, date: DateToISO(training.date)});
+    setIsReady(true);
     handleClose();
   };
 
@@ -54,7 +61,7 @@ export default function Addtraining(props) {
             value={training.date}
             onChange={e => handleInputChange(e)}
             label="Date and time"
-            placeholder="DD.MM.YYYY HH:mm"
+            placeholder="DD.MM.YYYY hh:mm"
             fullWidth
             variant="standard"
           />
