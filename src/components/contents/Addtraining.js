@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
+import EventNoteIcon from '@mui/icons-material/EventNote';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -46,9 +47,7 @@ export default function Addtraining(props) {
   return(
     <div>
       <Button 
-        style={{margin: 10}} 
-        variant="outlined" 
-        onClick={handleClickOpen}>Add training</Button>
+        onClick={handleClickOpen}><EventNoteIcon /></Button>
       <Dialog 
         open={open} 
         onClose={handleClose}>

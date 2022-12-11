@@ -10,10 +10,10 @@ export default function HeaderBar() {
   const navigate = useNavigate();
   return (
     <Box>
-      <AppBar position="static" sx={{ bgcolor: 'darkslategray' }}>
+      <AppBar position='static'>
         <Toolbar>
           <SidePanel />
-          <Typography variant="h5" component="div" sx={{ flexGrow: 1 }} 
+          <Typography variant='h5' component='div' sx={{ flexGrow: 1 }} 
             onClick={() => navigate('/')} style={{cursor:'pointer'}}>
               Personal Trainer
           </Typography>

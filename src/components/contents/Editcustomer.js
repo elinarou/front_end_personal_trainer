@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
+import EditIcon from '@mui/icons-material/Edit';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -49,9 +50,7 @@ export default function Editcustomer(props) {
   return(
     <div>
       <Button 
-        style={{margin: 10}} 
-        variant="outlined" 
-        onClick={handleClickOpen}>Edit</Button>
+        onClick={handleClickOpen}><EditIcon /></Button>
       <Dialog 
         open={open} 
         onClose={handleClose}>

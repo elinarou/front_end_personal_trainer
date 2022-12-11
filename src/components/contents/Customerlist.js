@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import '../../App.css';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-material.css';
 import { Typography, Divider, Button, Snackbar } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 import Addcustomer from './Addcustomer';
 import Editcustomer from './Editcustomer';
 import Addtraining from './Addtraining';
@@ -74,53 +76,50 @@ export default function Customerlist() {
 
   const columns = [
     {
-      headerName: '', 
-      width: 200,
-      // Edit
+      // Edit customer
+      headerName: 'Edit',
+      width: 90,
       cellRenderer: row => 
-      <Editcustomer 
-        updateCustomer={updateCustomer} 
-        customer={row.data}/>
+      <Editcustomer updateCustomer={updateCustomer} customer={row.data}/>
     },
     {
-      headerName: 'Actions', 
-      width: 200, 
-      // Delete 
+      // Delete customer
+      headerName: 'Delete',
+      width: 120,  
       cellRenderer: row => 
-      <Button 
-        color="error" 
-        size="small" 
-        onClick={() => deleteCustomer(row.data)}>Delete</Button>
+      <Button onClick={() => deleteCustomer(row.data)}><DeleteIcon /></Button>
     },
     {
-      headerName: 'Actions', 
-      width: 200, 
-      // Add training 
+      // Add training
+      headerName: 'Add training',
+      width: 120,
       cellRenderer: row => 
-      <Addtraining
-        saveTraining={saveTraining} 
-        customer={row.data}>Add training</Addtraining>
+      <Addtraining saveTraining={saveTraining} customer={row.data} />
     },
     {
       headerName: 'First name', 
-      field: 'firstname', 
+      field: 'firstname',
       filter: true, 
-      sortable: true},
+      sortable: true
+    },
     {
       headerName: 'Last name', 
       field: 'lastname', 
       filter: true, 
-      sortable: true},
+      sortable: true
+    },
     {
       headerName: 'Phone', 
       field: 'phone', 
       filter: true, 
-      sortable: true},
+      sortable: true
+    },
     {
       headerName: 'Email', 
       field: 'email', 
       filter: true, 
-      sortable: true},
+      sortable: true
+    },
     {
       headerName: 'Street address', 
       field: 'streetaddress', 
@@ -131,12 +130,14 @@ export default function Customerlist() {
       headerName: 'Post code', 
       field: 'postcode', 
       filter: true, 
-      sortable: true},
+      sortable: true
+    },
     {
       headerName: 'City', 
       field: 'city', 
       filter: true, 
-      sortable: true}
+      sortable: true
+    }
   ]
 
   return (

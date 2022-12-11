@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-material.css';
+import DeleteIcon from '@mui/icons-material/Delete';
 import ISOToDate from '../functions/ISOToDate';
 import { Typography, Divider, Button, Snackbar } from '@mui/material';
 
@@ -49,9 +50,7 @@ export default function Traininglist() {
       // Delete 
       cellRenderer: ({value}) => 
       <Button 
-        color="error" 
-        size="small" 
-        onClick={() => deleteTraining(value)}>Delete</Button>
+        onClick={() => deleteTraining(value)}><DeleteIcon /></Button>
     },
     {
       headerName: 'Customer', 
@@ -83,12 +82,12 @@ export default function Traininglist() {
 
   return (
     <div>
-      <Typography variant="h6" sx={{ ml: 19, p: 1 }}>
+      <Typography variant='h6' sx={{ ml: 19, p: 1 }}>
         Trainings
       </Typography>
-      <Divider variant="middle" />
+      <Divider variant='middle' />
       <div 
-      className="ag-theme-material" 
+      className='ag-theme-material' 
       style={{
       width: '80%', 
       height: '700px',
@@ -104,7 +103,7 @@ export default function Traininglist() {
         open={open}
         autoHideDuration={6000}
         onClose={handleClose}
-        message="Training deleted"
+        message='Training deleted'
       />
     </div>
   );
